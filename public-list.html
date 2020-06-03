@@ -28,8 +28,8 @@
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-white" id="shadow">
         <a class="navbar-brand" href="index.html">
-                <img src="./assets/navbar-logo.png" id="logo-top" alt="Keep Notes" style="width:60px">
-                Keep Notes
+            <img src="./assets/navbar-logo.png" id="logo-top" alt="Keep Notes" style="width:60px">
+            Keep Notes
         </a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -85,6 +85,9 @@
                 </div>
                 <textarea placeholder="Get your tasks done!" cols="10" rows="10" class="input-box"
                     id="jot-down"></textarea>
+                <div style="text-align: right; transform: translateY(-130%); cursor: pointer">
+                    <img src="assets/microphone.png" id="speaker-icon" style="height: 45px; width: 45px;">
+                </div>
                 <input class="add-list-btn" id="plus-btn" type="button" value="Add to list">
 
             </div>
@@ -143,7 +146,7 @@
                         let content = document.createTextNode(arr[i].trim());
                         span.appendChild(img);
                         div1.appendChild(content);
-                        div1.setAttribute("text",arr[i].trim() )
+                        div1.setAttribute("text", arr[i].trim())
                         div1.appendChild(span);
                         div.appendChild(div1);
                         span.firstElementChild.addEventListener('click', function (e) {
@@ -194,7 +197,7 @@
                             let content = document.createTextNode(text.value.trim());
                             span.appendChild(img);
                             div1.appendChild(content);
-                            div1.setAttribute("text",text.value.trim() )
+                            div1.setAttribute("text", text.value.trim())
                             div1.appendChild(span);
                             div.appendChild(div1);
                             document.getElementsByTagName("textarea")[0].value = "";
@@ -218,6 +221,42 @@
                 window.location.href = "login.html";
             })
         }
+
+        //speech recognition
+        document.getElementById('speaker-icon').addEventListener('click', () => {
+            if (window.hasOwnProperty('webkitSpeechRecognition')) {
+                document.getElementById("speaker-icon").src = "assets/listening-gif.gif";
+                document.getElementById("speaker-icon").style.height = "60px";
+                document.getElementById("speaker-icon").style.width = "60px";
+                document.getElementById("speaker-icon").style.marginRight = "5px";
+
+                var recognition = new webkitSpeechRecognition();
+
+                recognition.continuous = false;
+                recognition.interimResults = false;
+
+                recognition.lang = "en-US";
+                recognition.start();
+
+
+                recognition.onresult = function (e) {
+                    document.getElementById('jot-down').value
+                        = e.results[0][0].transcript;
+                    recognition.stop();
+                    document.getElementById("speaker-icon").src = "assets/microphone.png";
+                    document.getElementById("speaker-icon").style.height = "45px";
+                    document.getElementById("speaker-icon").style.width = "45px";
+                };
+
+
+                recognition.onerror = function (e) {
+                    recognition.stop();
+                }
+
+            } else {
+                console.log('Voice API not supported')
+            }
+        })
     </script>
 </body>
 
