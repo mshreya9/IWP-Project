@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="./assets/favicon.ico" type="image/x-icon" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Advanced to-do list">
+    <meta name="author" content="Shreya Maheshwari">
+    <link rel="stylesheet" href="./styles/navbar.css">
+    <link rel="preload" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" as="style"
+        onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    </noscript>
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> -->
+
+    <link rel="preload" href="https://fonts.googleapis.com/css?family=Barlow&display=swap" as="style"
+        onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Barlow&display=swap"></noscript>
+    <link rel="stylesheet" href="./styles/accessList.css">
+
+    <title>Keep Notes | Access List</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white " id="shadow">
+        <a class="navbar-brand" href="index.html">
+            <img src="./assets/navbar-logo.png" style="width:60px">
+            <span>Keep Notes</span>
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <div class="toggle-cover">
+                <div class="toggle-top"></div>
+                <div class="toggle-mid"></div>
+                <div class="toggle-mid"></div>
+                <div class="toggle-bottom"></div>
+            </div>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item ">
+                    <a class="nav-link" href="home.html" id="navbar-item">Home</a>
+                </li>
+                <li class="nav-item dropdown active">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbar-item" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Shared Lists
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="public-list.html">Public List</a>
+                        <a class="dropdown-item" href="accessList.html">Access List</a>
+                        <a class="dropdown-item" href="modifyAccess.html">Modify Access</a>
+                    </div>
+                </li>
+
+            </ul>
+            <ul class="navbar-nav ml-auto" style="margin-right : 5vw; position: relative">
+                <li class="nav-item active">
+                    <img src="./assets/useravatar.png" href="#" id="avatar">
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle active" href="#" id="navbar-item" id="navbarDropdown"
+                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span id="name"></span>
+                    </a>
+                    <div class="dropdown-menu" id="logout" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="#">Logout</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+    <div class="container-fluid">
+        <div class="row" style="padding:0vw 5vw">
+            <div class="col-12 col-lg-6">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="text-input">
+                            <h1>Access List</h1>
+                        </div>
+                    </div>
+                    <div class="col-1 col-lg-2"></div>
+                    <div class="col-10 col-lg-8" style="text-align: center;">
+                        <input list="email-collab" id="input-email-collab">
+                        <datalist id="email-collab"></datalist>
+                            <input type="button" class="get-list-btn" value="Show List">
+                    </div>
+                    <div class="col-1 col-lg-2"></div>
+                </div>
+            </div>
+            <div class="col-12 col-lg-6">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="text-input">
+                            <h1>Suggest Changes?</h1>
+                        </div>
+                    </div>
+                    <div class="col-1 col-lg-2"></div>
+                    <div class="col-10 col-lg-8" style="text-align: center;">
+                        <textarea placeholder="Suggest something!" id="content"></textarea>
+                        <input type="button" class="suggest-changes" style="min-width : 200px" value="Suggest Changes">
+                        <div class="status">
+                        </div>
+                    </div>
+                    <div class="col-1 col-lg-2"></div>
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-lg-3"></div>
+            <div class="col-12 col-lg-6" style="margin-top : 50px">
+                <div id="task-list"></div>
+            </div>
+            <div class="col-lg-3"></div>
+        </div>
+    </div>
+
+
+    <script src="./scripts/navbar.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+    <script>
+        window.onload = function () {
+
+            // XHR Get name
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.open("GET", "https://advtodo.herokuapp.com/secure/getname");
+            xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            xmlhttp.setRequestHeader("Authorization", localStorage.getItem("token"));
+            xmlhttp.send();
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState == 4) {
+                    document.getElementById("name").innerHTML = JSON.parse(xmlhttp.responseText).name;
+                }
+            };
+
+            // XHR get list of email of users who shared the list
+            var https = new XMLHttpRequest();
+            https.open("GET", "https://advtodo.herokuapp.com/share/user/getuser");
+            https.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            https.setRequestHeader("Authorization", localStorage.getItem("token"));
+            https.send();
+            https.onreadystatechange = function () {
+                if (https.readyState == 4) {
+                    let arr = [...new Set(JSON.parse(https.responseText).list)];
+                    for (i = 0; i < arr.length; i++) {
+                        let option = document.createElement("option");
+                        option.setAttribute("value", arr[i]);
+                        document.getElementById("email-collab").appendChild(option);
+                    }
+
+                }
+            };
+
+            // XHR get the list of the particular user
+            document.getElementsByClassName("get-list-btn")[0].addEventListener("click", function (e) {
+                let email = document.getElementById("input-email-collab").value;
+                var http = new XMLHttpRequest();   // new HttpRequest instance 
+                http.open("POST", "https://advtodo.herokuapp.com/secure/public/getlistothers");
+                http.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+                http.setRequestHeader("Authorization", localStorage.getItem("token"))
+                http.send(JSON.stringify({ email }));
+                http.onreadystatechange = function () {
+                    if (http.readyState == 4) {
+                        document.getElementById("task-list").innerHTML = "";
+                        let arr = JSON.parse(http.responseText).list;
+                        for (i = 0; i < arr.length; i++) {
+                            let div = document.createElement("div");
+                            div.setAttribute("style", "margin-top : 10px; margin-bottom : 10px");
+                            let div1 = document.createElement("div");
+                            div1.setAttribute("class", "div1-attribute")
+                            let content = document.createTextNode(arr[i]);
+                            div1.appendChild(content);
+                            div.appendChild(div1);
+                            document.getElementById("task-list").appendChild(div);
+                        }
+
+                    }
+                }
+            })
+
+            // to suggest changes
+            document.getElementsByClassName("suggest-changes")[0].addEventListener("click", () => {
+                var http = new XMLHttpRequest();   // new HttpRequest instance 
+                http.open("POST", "https://advtodo.herokuapp.com/share/user/reqchange");
+                http.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+                http.setRequestHeader("Authorization", localStorage.getItem("token"))
+                http.send(JSON.stringify({ "email": document.getElementById("input-email-collab").value, "content": document.getElementById("content").value }));
+                http.onreadystatechange = function () {
+                    if (http.readyState == 4) {
+                        document.getElementsByClassName("status")[0].innerHTML = JSON.parse(http.responseText).message;
+                        document.getElementsByClassName("status")[0].style.display = "block"
+
+                    }
+                }
+            })
+
+            document.getElementById("logout").addEventListener("click", () => {
+                localstorage.removeItem("token");
+                window.location.href = "login.html";
+            })
+        }
+    </script>
+
+</body>
+
+</html>

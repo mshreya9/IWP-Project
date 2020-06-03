@@ -1,0 +1,123 @@
+body {
+    font-family:'Barlow', sans-serif;
+}
+#popup{
+    border-radius:10px;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); 
+    padding:40px;
+    position:fixed; 
+    top:50%; 
+    left:50%;
+    transform: translate(-50%, -50%);
+    z-index : 2000; 
+    height : auto;
+    background-color:#f0f0ef;
+    display:none;
+}
+.login-page{
+    text-align:center;
+    margin-top:50px;
+}
+input:focus,
+select:focus,
+textarea:focus,
+button:focus {
+    outline: none;
+}
+.bg-white {
+    box-shadow: 0 0 10px 0 rgba(0,0,0,.15);
+}
+.nav-item {
+    padding-left : 10px;
+    padding-right : 10px
+}
+.nav-link {
+    font-size : 18px
+}
+.navbar-brand {
+    font-size: 22px
+}
+input{
+    width:60%;
+    padding: 5px 20px;
+    margin-top:50px;
+    color:black;
+    display: inline-block;
+    font-size:20px;
+    height:55px;
+    text-decoration:none;
+    border-radius:40px;
+    border:2px solid lightblue;
+    box-sizing: border-box;
+    cursor:pointer;
+}
+input:hover{
+    box-shadow: 0 0 10px 0 rgba(0,0,0,.2);
+}
+.login-button, .create-acc-btn, .signup-button, .send-btn{
+    width:auto;
+    color:black;
+    padding:5px 50px;
+    border-radius:40px;
+    border:2px solid;
+    background-color: white;
+    font-size:20px;
+    cursor: pointer
+}
+.create-acc-btn{
+    margin-top:50px;
+    margin-bottom:80px;
+    color:white;
+    padding:5px 30px;
+    border:2px solid #0a0a4d;
+    background-color: #0a0a4d;
+}
+.create-acc-btn:hover{
+    color:black;
+    background-color: white;
+    transition: 0.5s;
+}
+.login-button:hover, .signup-button:hover, .send-btn:hover{
+    color:white;
+    border:2px solid #0a0a4d;
+    background-color: #0a0a4d;
+    transition: 0.5s;
+}
+#logo {
+    width : inherit;
+    filter: blur(1px); 
+    position: absolute; 
+    top : 50%; 
+    left : 0; 
+    transform: translateY(-50%); 
+    opacity: 0.3
+}
+#logo-top:hover{
+    transform:scale(1.1,1.1);
+}
+#create-acc-btn-cvr, #forgot-pw-cvr{
+    position: absolute; 
+    top : 50%; 
+    left : 50%; 
+    transform: translate(-50%, -50%); 
+    z-index : 100
+}
+#forgot-pw-cvr {
+    top : 65%; 
+}
+#forgot-pw {
+    text-decoration: underline; 
+    cursor: pointer;
+}
+#error{
+    color:red;
+    font-size:15px;
+    border:2px solid red;
+    border-radius:10px;
+    padding : 15px;
+    visibility:hidden;
+}
+#forgot-email{
+    border:2px solid blue;
+    width:100%;
+}

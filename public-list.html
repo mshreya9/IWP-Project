@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="./assets/favicon.ico" type="image/x-icon" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Advanced to-do list">
+    <meta name="author" content="Shreya Maheshwari">
+    <link rel="stylesheet" href="./styles/navbar.css">
+    <link rel="preload" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" as="style"
+        onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    </noscript>
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> -->
+
+    <link rel="preload" href="https://fonts.googleapis.com/css?family=Barlow&display=swap" as="style"
+        onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Barlow&display=swap"></noscript>
+    <link rel="stylesheet" href="./styles/home.css">
+
+    <title>Keep Notes | Public List</title>
+</head>
+
+<body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-white" id="shadow">
+        <a class="navbar-brand" href="index.html">
+                <img src="./assets/navbar-logo.png" id="logo-top" alt="Keep Notes" style="width:60px">
+                Keep Notes
+        </a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <div class="toggle-cover">
+                <div class="toggle-top"></div>
+                <div class="toggle-mid"></div>
+                <div class="toggle-mid"></div>
+                <div class="toggle-bottom"></div>
+            </div>
+        </button>
+
+        <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav mr-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="home.html" id="navbar-item">Home</a>
+                </li>
+                <li class="nav-item dropdown active">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbar-item" id="navbarDropdown" role="button"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Shared Lists
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="public-list.html">Public List</a>
+                        <a class="dropdown-item" href="accessList.html">Access List</a>
+                        <a class="dropdown-item" href="modifyAccess.html">Modify Access</a>
+                    </div>
+                </li>
+
+            </ul>
+            <ul class="navbar-nav ml-auto" style="margin-right : 5vw; position: relative">
+                <li class="nav-item active">
+                    <img src="./assets/useravatar.png" href="#" id="avatar">
+                </li>
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle active" href="#" id="navbar-item" id="navbarDropdown"
+                        role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <span id="name"></span>
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" id="logout" href="#">Logout</a>
+                    </div>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12 col-lg-6" style="padding:0vw 5vw; text-align : center">
+                <div class="text-input">
+                    <h1>Jot Down</h1>
+                    <h4>Public List</h4>
+                </div>
+                <textarea placeholder="Get your tasks done!" cols="10" rows="10" class="input-box"
+                    id="jot-down"></textarea>
+                <input class="add-list-btn" id="plus-btn" type="button" value="Add to list">
+
+            </div>
+            <div class="col-12 col-lg-6">
+                <img src="./assets/to-do-list.png" class="organizer-image">
+                <div style="padding : 0 20px; margin-top:100px;" id="task-list"></div>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="./scripts/navbar.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+    <script>
+        window.onload = function () {
+
+            var xmlhttp = new XMLHttpRequest();
+            xmlhttp.open("GET", "https://advtodo.herokuapp.com/secure/getname");
+            xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            xmlhttp.setRequestHeader("Authorization", localStorage.getItem("token"));
+            xmlhttp.send();
+            xmlhttp.onreadystatechange = function () {
+                if (xmlhttp.readyState == 4) {
+                    console.log(xmlhttp.responseText)
+                    document.getElementById("name").innerHTML = JSON.parse(xmlhttp.responseText).name;
+                }
+            };
+
+            var xmlhttpsecond = new XMLHttpRequest();
+            let text = document.getElementById("jot-down");
+            xmlhttpsecond.open("POST", "https://advtodo.herokuapp.com/secure/public/getlist");
+            xmlhttpsecond.setRequestHeader("Authorization", localStorage.getItem("token")); //private list is specific to a person, we pass token to uniqely identify logged in user.
+            xmlhttpsecond.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+            xmlhttpsecond.send();
+            // giving XHR call first then adding it to the DOM when successful
+            xmlhttpsecond.onreadystatechange = function () {
+                if (xmlhttpsecond.readyState == 4) {
+                    let arr = JSON.parse(xmlhttpsecond.responseText).list;
+                    for (i = 0; i < arr.length; i++) {
+                        let div = document.createElement("div");
+                        div.setAttribute("style", "margin-top : 10px; margin-bottom : 10px");
+                        let div1 = document.createElement("div");
+                        div1.setAttribute("class", "div1-attribute")
+                        let span = document.createElement("span");
+                        let img = document.createElement("img");
+                        img.setAttribute("class", "img-attribute");
+                        img.setAttribute("src", "./assets/cross.svg");
+                        let content = document.createTextNode(arr[i].trim());
+                        span.appendChild(img);
+                        div1.appendChild(content);
+                        div1.setAttribute("text",arr[i].trim() )
+                        div1.appendChild(span);
+                        div.appendChild(div1);
+                        span.firstElementChild.addEventListener('click', function (e) {
+                            var xmlhttp = new XMLHttpRequest(); //Request Instance
+                            xmlhttp.open("POST", "https://advtodo.herokuapp.com/secure/public/dellist");
+                            xmlhttp.setRequestHeader("Authorization", localStorage.getItem("token")); //private list is specific to a person, we pass token to uniqely identify logged in user.
+                            xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+                            xmlhttp.send(JSON.stringify({ "remove": e.target.parentNode.parentNode.getAttribute("text") }));
+                            xmlhttp.onreadystatechange = function () { }
+                            e.target.parentNode.parentNode.parentNode.remove();
+                        })
+                        document.getElementById("task-list").appendChild(div);
+                    }
+                }
+            }
+
+            document.getElementById("jot-down").addEventListener("focus", function (e) {
+                e.target.style.borderColor = "lightblue";
+                e.target.placeholder = "Get your tasks done!";
+            })
+
+            document.getElementById("plus-btn").addEventListener('click', function (event) {
+                let text = document.getElementById("jot-down");
+
+                if (text.value.trim().length == 0) {
+                    text.style.borderColor = "red";
+                    text.placeholder = "It's an empty list!";
+                }
+                else {
+                    text.style.borderColor = "lightblue";
+                    xmlhttp.open("POST", "https://advtodo.herokuapp.com/secure/public/addlist");
+                    xmlhttp.setRequestHeader("Authorization", localStorage.getItem("token")); //private list is specific to a person, we pass token to uniqely identify logged in user.
+                    xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+                    console.log(text.value.trim())
+                    xmlhttp.send(JSON.stringify({ "list": text.value.trim() }));
+                    // giving XHR call first then adding it to the DOM when successful
+                    xmlhttp.onreadystatechange = function () {
+                        if (xmlhttp.readyState == 4) {
+                            let div = document.createElement("div");
+                            div.setAttribute("style", "margin-top : 10px; margin-bottom : 10px");
+                            let div1 = document.createElement("div");
+                            div1.setAttribute("class", "div1-attribute")
+                            let span = document.createElement("span");
+                            let img = document.createElement("img");
+                            img.setAttribute("class", "img-attribute");
+                            img.setAttribute("src", "./assets/cross.svg");
+                            console.log(text.value.trim())
+                            let content = document.createTextNode(text.value.trim());
+                            span.appendChild(img);
+                            div1.appendChild(content);
+                            div1.setAttribute("text",text.value.trim() )
+                            div1.appendChild(span);
+                            div.appendChild(div1);
+                            document.getElementsByTagName("textarea")[0].value = "";
+                            span.firstElementChild.addEventListener('click', function (e) {
+                                xmlhttp.open("POST", "https://advtodo.herokuapp.com/secure/public/dellist");
+                                xmlhttp.setRequestHeader("Authorization", localStorage.getItem("token")); //private list is specific to a person, we pass token to uniqely identify logged in user.
+                                xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+                                xmlhttp.send(JSON.stringify({ "remove": (e.target.parentNode.parentNode.getAttribute("text")) }));
+                                xmlhttp.onreadystatechange = function () { }
+                                e.target.parentNode.parentNode.parentNode.remove(); //call-back fxn (will execute only when plus button is clicked)
+                            })
+                            document.getElementById("task-list").appendChild(div);
+                        }
+                    }
+
+                }
+            })
+
+            document.getElementById("logout").addEventListener("click", (e) => {
+                localStorage.removeItem("token"); // token is removed so its value is null and hence so no saved lists.
+                window.location.href = "login.html";
+            })
+        }
+    </script>
+</body>
+
+</html>

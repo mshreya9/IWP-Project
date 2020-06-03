@@ -1,0 +1,129 @@
+#navbar-item{
+    padding-top:10px;
+    padding-bottom:10px;
+    font-family:'Barlow', sans-serif;
+    font-size:20px;
+}
+#shadow{
+    box-shadow: 0 0 10px 0 rgba(0,0,0,.15);
+}
+#navbar-item-1{
+    font-family:'Barlow', sans-serif;
+    font-size:20px;
+}
+.nav-item {
+    padding-left : 10px;
+    padding-right : 10px
+}
+.page-title{
+    font-family: 'Barlow', sans-serif;
+    font-weight:bold;
+}
+.page-head{
+    padding-top:10px;
+    font-family: 'Barlow', sans-serif;
+    font-weight:bolder;
+    font-size:30px;
+}
+.page-text{
+    padding-top:10px;
+    font-family: 'Barlow', sans-serif;
+    font-size:20px;
+}
+textarea{
+    resize:none;
+    outline:none;
+}
+.text-input{
+    text-align:center;
+    margin-top:50px;
+    font-family: 'Barlow', sans-serif;
+    font-size:20px;
+}
+.input-box{
+    border:2px solid lightblue;
+    margin-top:50px;
+    height:auto;
+    width:100%;
+    border-radius:20px;
+    padding: 10px 15px;
+}
+.organizer-image{
+    width:100%;
+    margin-top:50px;
+    opacity: 0.2;
+    position: absolute;
+    top : 0;
+    left : 0;
+    z-index : -100
+}
+#avatar {
+    height:40px; 
+    position: absolute; 
+    left : -20%; 
+    top: 50%; 
+    transform: translateY(-50%)
+}
+#task-list {
+    height: 500px;
+    overflow-y: scroll;
+}
+.img-attribute{
+    width:3%;
+    height:auto; 
+    position:absolute; 
+    top:50%; 
+    right:1%; 
+    transform: translate(-50%, -50%); 
+    cursor:pointer;
+}
+.div1-attribute{
+    position: relative;
+    height : auto;
+    word-break : break-all; 
+    padding: 10px 40px 10px 20px;
+    font-size:20px; 
+    font-weight:bolder; 
+    border:2px solid transparent; 
+    box-shadow:0 0 10px 0 rgba(0,0,0,.30); 
+    border-radius:40px; 
+    width:100%"
+}
+#input-email-collab {
+    width : 100%;
+}
+input{
+    width:60%;
+    padding: 5px 20px;
+    margin-top:50px;
+    color:black;
+    display: inline-block;
+    font-size:20px;
+    height:55px;
+    text-decoration:none;
+    border-radius:40px;
+    border:2px solid lightblue;
+    box-sizing: border-box;
+    cursor:pointer;
+}
+input:hover{
+    box-shadow: 0 0 10px 0 rgba(0,0,0,.2);
+}
+
+.add-list-btn{
+    width:auto;
+    outline: none;
+    color:black;
+    padding:5px 50px;
+    border-radius:40px;
+    border:2px solid;
+    background-color: white;
+    font-size:20px;
+    cursor: pointer
+}
+.add-list-btn:hover{
+    color:white;
+    border:2px solid #0a0a4d;
+    background-color: #0a0a4d;
+    transition: 0.5s;
+}

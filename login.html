@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <link rel="icon" href="./assets/favicon.ico" type="image/x-icon" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Advanced to-do list">
+    <meta name="author" content="Shreya Maheshwari">
+    <link rel="stylesheet" href="./styles/navbar.css">
+    <link rel="preload" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" as="style"
+        onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    </noscript>
+    <!-- <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"> -->
+
+    <link rel="preload" href="https://fonts.googleapis.com/css?family=Barlow&display=swap" as="style"
+        onload="this.onload=null;this.rel='stylesheet'">
+    <noscript>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Barlow&display=swap"></noscript>
+    <link rel="stylesheet" href="./styles/login-signup.css">
+
+    <title>Keep Notes | Login</title>
+</head>
+
+<body>
+    <!-- forgot password popup -->
+
+    <div id="popup" style="width : 40%; min-width: 300px;">
+
+        <div style="float:right; transform:translate(100%, -100%); cursor:pointer;">
+            <img src="./assets/cross.svg" id="close-btn" style="width:20px; height:auto">
+        </div>
+        <div style="text-align:center;">
+            <h4>Forgot password?</h4>
+            <h6>Enter your email to get the new password</h6>
+        </div>
+
+        <div id="popup-error"></div>
+        <div style="text-align:center;">
+            <input id="forgot-email" placeholder="Enter your email" type="email" name="emailaddress"
+                style="margin-top: 20px">
+        </div>
+        <div style="text-align:center; position: relative;">
+            <img id="load" src="assets/test.svg"
+                style="width:50px; height:auto; position:absolute; left:50%; bottom:3%; transform:translateX(-50%); display: none ">
+
+            <input type="button" class="send-btn" value="Send" style="margin-top:20px;">
+        </div>
+    </div>
+
+    <div id="main-page">
+        <nav class="navbar navbar-expand-lg navbar-light bg-white">
+            <a class="navbar-brand" href="index.html">
+                <img src="./assets/navbar-logo.png" style="width:60px">
+                <span>Keep Notes</span>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+                aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <div class="toggle-cover">
+                    <div class="toggle-top"></div>
+                    <div class="toggle-mid"></div>
+                    <div class="toggle-mid"></div>
+                    <div class="toggle-bottom"></div>
+                </div>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="about.html">About Us</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="container-fluid">
+            <div class="row" style="padding-top : 40px">
+                <div class="col-12 col-lg-6 order-lg-2">
+                    <div class="login-page">
+                        <div>
+                            <h2>Already have an account?</h2>
+                        </div>
+                        <div>
+                            <div id="error"></div>
+                        </div>
+                        <div>
+                            <input id="email" placeholder="Email" type="email" name="emailaddress">
+                        </div>
+                        <div>
+                            <input id="passwd" placeholder="Password" type="password">
+                        </div>
+                        <div style="position: relative">
+                            <img id="loader" src="assets/test.svg"
+                                style="width:50px; height:auto; position:absolute; left:50%; bottom:3%; transform:translateX(-50%); display:none;">
+
+                            <input type="button" class="login-button" value="Login">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-6 order-lg-1" style="position: relative; height : 400px">
+                    <img src="./assets/login-image.png" id="logo">
+                    <div id="create-acc-btn-cvr">
+                        <a href="index.html"><input type="button" class="create-acc-btn" value="Create Account"></a>
+                    </div>
+                    <div id="forgot-pw-cvr">
+                        <a id="forgot-pw">Forgot Password?</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="./scripts/navbar.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+        integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+        integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+        crossorigin="anonymous"></script>
+
+    <script>
+
+        window.onload = function () {
+            document.getElementsByClassName("login-button")[0].addEventListener('click', function (event) {
+
+
+                let username = document.getElementById("email");
+                let password = document.getElementById("passwd");
+
+
+                let status = [];
+
+                if (username.value.trim().length == 0) {
+                    status.push("false");
+                    username.style.borderColor = "red";
+                    username.placeholder = "Please enter valid input"
+                } else {
+                    username.style.borderColor = "green";
+                    status.push("true");
+                }
+
+                if (password.value.trim().length <= 6) {
+                    status.push("false");
+                    password.style.borderColor = "red";
+                    password.placeholder = "Please enter valid input"
+                } else {
+                    password.style.borderColor = "green";
+                    status.push("true");
+                }
+
+                if (status.includes("false")) {
+                    return false
+                }
+                else {
+
+                    document.getElementById("loader").style.display = "block";
+                    document.getElementsByClassName("login-button")[0].style.value = "";
+                    document.getElementsByClassName("login-button")[0].style.backgroundColor = "#0a0a4d";
+                    document.getElementsByClassName("login-button")[0].style.color = "#0a0a4d";
+                    var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance 
+                    xmlhttp.open("POST", "https://advtodo.herokuapp.com/auth/login");
+                    xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+                    xmlhttp.send(JSON.stringify({ "email": email.value, "password": password.value }));
+                    xmlhttp.onreadystatechange = function () {
+                        if (xmlhttp.readyState == 4) {
+                            console.log(JSON.parse(xmlhttp.responseText).message)
+                            if ("No such user exist try signing up first" == JSON.parse(xmlhttp.responseText).message) {
+                                document.getElementsByClassName("login-button")[0].style.value = "Login";
+                                document.getElementsByClassName("login-button")[0].style.backgroundColor = "white";
+                                document.getElementsByClassName("login-button")[0].style.color = "black";
+                                document.getElementById("loader").style.display = "none";
+                                document.getElementById("error").style.visibility = "visible";
+                                document.getElementById('error').innerHTML = "No such user exist, create your account first";
+                            }
+                            else if ("The password entered by the user was wrong" == JSON.parse(xmlhttp.responseText).message) {
+                                document.getElementsByClassName("login-button")[0].style.value = "Login";
+                                document.getElementsByClassName("login-button")[0].style.backgroundColor = "white";
+                                document.getElementsByClassName("login-button")[0].style.color = "black";
+                                document.getElementById("loader").style.display = "none";
+                                document.getElementById("error").style.visibility = "visible";
+                                document.getElementById("error").innerHTML = "The password entered is wrong!";
+                            }
+                            else if ("Success, the password matched successfully" == JSON.parse(xmlhttp.responseText).message) {
+                                localStorage.setItem("token", JSON.parse(xmlhttp.responseText).token);
+                                window.location.href = "home.html";
+                            }
+
+                        }
+                    };
+                }
+            })
+
+            document.getElementById("forgot-pw").addEventListener("click", function () {
+                document.getElementById("main-page").style.opacity = "0.1";
+                document.getElementById("popup").style.display = "block";
+            })
+
+            document.getElementById("close-btn").addEventListener("click", function () {
+                document.getElementById("main-page").style.opacity = "1.0";
+                document.getElementById("popup").style.display = "none";
+            })
+
+            document.getElementsByClassName("send-btn")[0].addEventListener('click', function () {
+                let email = document.getElementById("forgot-email");
+                document.getElementById("load").style.display = "block";
+                document.getElementsByClassName("send-btn")[0].style.backgroundColor = "#0a0a4d";
+                document.getElementsByClassName("send-btn")[0].style.color = "#0a0a4d";
+                let reg = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+                if (reg.test(email.value.trim())) {
+                    email.style.borderColor = "Green";
+                    var xmlhttp = new XMLHttpRequest();   // new HttpRequest instance 
+                    xmlhttp.open("POST", "https://advtodo.herokuapp.com/auth/forgetpw");
+                    xmlhttp.setRequestHeader("Content-Type", "application/json;charset=UTF-8");
+                    xmlhttp.send(JSON.stringify({ "email": email.value }));
+                    xmlhttp.onreadystatechange = function () {
+                        if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                            if ("No such user exist try signing up first" == JSON.parse(xmlhttp.responseText).message) {
+                                document.getElementsByClassName("send-btn")[0].style.value = "Send";
+                                document.getElementsByClassName("send-btn")[0].style.backgroundColor = "white";
+                                document.getElementsByClassName("send-btn")[0].style.color = "black";
+                                document.getElementById("main-page").style.opacity = "0.1";
+                                document.getElementById("popup").style.display = "block";
+                                document.getElementById("popup-error").style.border = "2px solid red";
+                                document.getElementById("popup-error").style.color = "red";
+                                document.getElementById("popup-error").style.padding = "10px";
+                                document.getElementById("popup-error").style.borderRadius = "8px";
+                                document.getElementById("popup-error").style.textAlign = "center";
+                                document.getElementById("load").style.display = "none";
+                                document.getElementById("popup-error").innerHTML = "No such user exists, try signing up first";
+                                document.getElementById("popup-error").visibility = "visible";
+                            }
+                            else if ("There was problem resetting your password, try again later" == JSON.parse(xmlhttp.responseText).message) {
+                                document.getElementsByClassName("send-btn")[0].style.value = "Send";
+                                document.getElementsByClassName("send-btn")[0].style.backgroundColor = "white";
+                                document.getElementsByClassName("send-btn")[0].style.color = "black";
+                                document.getElementById("main-page").style.opacity = "0.1";
+                                document.getElementById("popup").style.display = "block";
+                                document.getElementById("popup-error").style.border = "2px solid red";
+                                document.getElementById("popup-error").style.color = "red";
+                                document.getElementById("popup-error").style.padding = "10px";
+                                document.getElementById("popup-error").style.borderRadius = "8px";
+                                document.getElementById("popup-error").style.textAlign = "center";
+                                document.getElementById("load").style.display = "none";
+                                document.getElementById("popup-error").innerHTML = "There was a problem resetting your password, try again after some time";
+                                document.getElementById("popup-error").visibility = "visible";
+                            }
+                            else {
+                                document.getElementsByClassName("send-btn")[0].style.value = "Send";
+                                document.getElementsByClassName("send-btn")[0].style.backgroundColor = "white";
+                                document.getElementsByClassName("send-btn")[0].style.color = "black";
+                                document.getElementById("main-page").style.opacity = "0.1";
+                                document.getElementById("popup").style.display = "block";
+                                document.getElementById("popup-error").style.border = "2px solid green";
+                                document.getElementById("popup-error").style.color = "green";
+                                document.getElementById("popup-error").style.padding = "10px";
+                                document.getElementById("popup-error").style.borderRadius = "8px";
+                                document.getElementById("popup-error").style.textAlign = "center";
+                                document.getElementById("popup-error").innerHTML = "Success, the email was sent successfully";
+                                document.getElementById("popup-error").visibility = "visible";
+                                document.getElementById("load").style.display = "none";
+                            }
+                        }
+                    }
+                }
+                else {
+                    email.style.borderColor = "Red";
+                    email.placeholder = "Please enter a valid input!";
+                    return false;
+                }
+            })
+        }
+
+    </script>
+</body>
+
+</html>
